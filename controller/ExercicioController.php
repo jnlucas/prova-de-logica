@@ -6,7 +6,26 @@ class ExercicioController extends Pergaminho {
     
     var $texto = array();
     var $ordem = array(
-      'j','n','g','m','c','l','q','s','k','r','z','f','v','b','w','p','x','d','h','t' 
+      'j' => 'a',
+      'n'=> 'b',
+      'g'=> 'c',
+      'm'=> 'd',
+      'c'=> 'e',
+      'l' =>'f',
+      'q'=> 'g',
+      's'=> 'h',
+      'k'=> 'i',
+      'r'=> 'j',
+      'z'=> 'l',
+      'f'=> 'm',
+      'v'=> 'n',
+      'b'=> 'o',
+      'w'=> 'p',
+      'p'=> 'q',
+      'x'=> 'r',
+      'd'=> 's',
+      'h'=> 't',
+      't'=> 'u' 
     );
     var $ordenacao;
 
@@ -48,6 +67,51 @@ class ExercicioController extends Pergaminho {
     public function transformArray($texto){
         $this->texto = explode(' ', $texto);
         return $this->texto;
+    }
+    
+    public function ordenar(){
+        $this->transformArray($this->getTexto2());
+        $array = array();
+        foreach($this->texto as $texto){
+            $array[] = $this->transformNumero($texto);
+        }
+        sort($array);
+        foreach($array as $arr){
+            $retorno[] = $this->destransformNumero($arr);
+        }
+        
+        return $retorno;
+        
+    }
+    
+    public function transformNumero($palavra)
+    {
+        $string = array();
+        for($i = 0; $i < strlen($palavra); $i ++){
+            
+            foreach($this->ordem as $k =>  $ordem){
+                if($k == substr($palavra,$i,1)){
+                     $string[] = (string) "$ordem";
+                }
+            } 
+        }
+        return  $string = implode("", $string);
+       
+    }
+    
+    public function destransformNumero($palavra)
+    {
+        $string = array();
+        for($i = 0; $i < strlen($palavra); $i ++){
+            
+            foreach($this->ordem as $k =>  $ordem){
+                if($ordem == substr($palavra,$i,1)){
+                     $string[] = (string) "$k";
+                }
+            } 
+        }
+        return  $string = implode("", $string);
+       
     }
 }
 

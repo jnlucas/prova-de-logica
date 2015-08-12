@@ -15,4 +15,8 @@ echo "<br>";
 echo "Exercicio 2: "."verbos Primeira pessoa:" .sizeof($exercicio->getVerbosPrimeiraPessoa($exercicio->getVerbos()));
 echo "<br>";
 
+echo "Exercicio 3: "."ordenacao:" .implode(" ",$exercicio->ordenar());
+echo "<br>";
+
+
 ?>
